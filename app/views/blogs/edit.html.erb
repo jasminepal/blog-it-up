@@ -1,0 +1,8 @@
+<!-- app/views/blogs/edit.html.erb -->
+<h1>Edit Blog Post</h1>
+<%= render 'image_form' %> <!-- Render the image form partial -->
+<%= form_with(model: @blog, url: blog_path(@blog), local: true, method: :patch) do |form| %>
+  <%= form.text_field :title, placeholder: 'Title', value: @blog.title %>
+  <%= form.text_area :text, placeholder: 'Text', value: @blog.text %>
+  <%= form.submit 'Update Blog Post' %>
+<% end %>

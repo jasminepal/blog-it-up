@@ -1,0 +1,6 @@
+
+<%= form_with(model: @blog, local: true) do |form| %>
+  <label for="blog_image">Upload Image:</label>
+  <%= form.file_field :image %>
+  <%= form.submit 'Upload Image' %>
+<% end %>

@@ -73,3 +73,9 @@ end
 
 # gemfile
 gem 'carrierwave', '~> 3.0'
+
+#devise
+gem 'devise'
+
+# mini_migick
+gem 'mini_magick'
