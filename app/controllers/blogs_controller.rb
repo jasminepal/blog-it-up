@@ -1,5 +1,4 @@
 class BlogsController < ApplicationController
-    require 'pry'
     before_action :authenticate_user!
     before_action :set_blog, only: [:edit, :update, :destroy]
     def index
@@ -15,7 +14,6 @@ class BlogsController < ApplicationController
     end
 
     def create
-        # binding.pry  # smooth execution with error handling
         @blog = Blog.new(blog_params)
         if @blog.save
             flash[:success] = 'Blog post was successfully created.'
