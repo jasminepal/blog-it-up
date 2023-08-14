@@ -81,4 +81,4 @@ gem 'devise'
 gem 'mini_magick'
 
 # error handling
-gem 'pry'
+# gem 'pry'

@@ -15,7 +15,7 @@ class BlogsController < ApplicationController
     end
 
     def create
-        binding.pry  # smooth execution with error handling
+        # binding.pry  # smooth execution with error handling
         @blog = Blog.new(blog_params)
         if @blog.save
             flash[:success] = 'Blog post was successfully created.'
@@ -50,7 +50,7 @@ class BlogsController < ApplicationController
     private
 
     def blog_params
-        params.require(:blog).permit(:image, :title, :content)
+        params.require(:blog).permit(:title, :content, :image)
     end
 
 
