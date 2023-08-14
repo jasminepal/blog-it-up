@@ -1,8 +1,9 @@
 <!-- app/views/blogs/new.html.erb -->
 <h1>Create a New Blog Post</h1>
 <%= render 'image_form' %> <!-- Render the image form partial -->
-<%= form_with(model: @blog, url: blogs_path, local: true) do |form| %>
+<%= form_with(model: @blog, url: blogs_path, local: true, html: { class: "your-form-class" }) do |form| %>
   <%= form.text_field :title, placeholder: 'Title' %>
-  <%= form.text_area :text, placeholder: 'Text' %>
+  <!-- %= form.text_area :text, placeholder: 'Text' %-->
+  <%= form.text_area :content, placeholder: 'Content' %>
   <%= form.submit 'Create Blog Post' %>
 <% end %>

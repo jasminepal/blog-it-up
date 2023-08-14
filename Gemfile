@@ -79,3 +79,6 @@ gem 'devise'
 
 # mini_migick
 gem 'mini_magick'
+
+# error handling
+gem 'pry'

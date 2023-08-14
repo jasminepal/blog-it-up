@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "styles", "data-turbo-track": "reload" %>
   </head>
 
   <body>
@@ -16,11 +17,14 @@
       <li><%= link_to "Log In", new_user_session_path %></li>
     </ul>
     <nav>
+      
       <%= link_to 'Home', root_path %>
+      <br>
       <%= link_to 'Create New Post', new_blog_path %>
     </nav>
     <div class="main-content">
       <%= yield %>
     </div>
+    
   </body>
 </html>
