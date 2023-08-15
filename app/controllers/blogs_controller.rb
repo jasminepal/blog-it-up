@@ -2,7 +2,7 @@ class BlogsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_blog, only: [:edit, :update, :destroy]
     def index
-        @blogs = Blog.all
+        @blogs = current_user.blogs.all
     end
 
     def show
@@ -10,11 +10,11 @@ class BlogsController < ApplicationController
     end
     
     def new
-        @blog = Blog.new
+        @blog = current_user.blogs.build
     end
 
     def create
-        @blog = Blog.new(blog_params)
+        @blog = current_user.blogs.build(blog_params)
         if @blog.save
             flash[:success] = 'Blog post was successfully created.'
             redirect_to blogs_path
