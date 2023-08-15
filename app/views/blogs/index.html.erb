@@ -37,7 +37,18 @@
             color: #e74c3c;
             text-decoration: underline;
         }
+
+        .blog-title {
+            color: blue;    /* Set the color to blue */
+            font-weight: bold;   /* Set the font weight to bold */
+            font-size: 24px;     /* Increase the font size (adjust as needed) */
+        }
         
+        .meta {
+            color: #777;
+            font-size: 14px;
+        }
+
         footer {
             text-align: center;
             padding: 10px;
@@ -71,13 +82,20 @@
         <ul id="blogList">
             <% @blogs.each do |blog| %>
                 <li>
-                    <h3><%= blog.title %></h3>
+                    <!--h2><%= blog.title %></h2-->
+                    <h3 class="blog-title"><%= blog.title %></h3>
                     <p><%= blog.content %></p>
                     <% if blog.image.present? %>
                         <%= image_tag blog.image.url, alt: blog.title %>
                     <% end %>                   
-                    <%= link_to "Delete", blog_path(blog), method: :delete, data: { confirm: "Are you sure?" } %>
+                    <!--%= link_to "Delete", blog_path(blog), method: :delete, data: { confirm: "Are you sure?" } %-->
                     <!--%= link_to "DELETE", destroy_user_session_path, method: :delete %-->
+                    <%= link_to "DESTROY", blog, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                    <p class="meta">
+                        Posted by <%= blog.user.email %> on <%= blog.created_at.strftime("%B %d, %Y") %>
+                    </p>
+                    <br>
+                    <br>
                 </li>
             <% end %>
         </ul>
