@@ -4,9 +4,10 @@ class BlogsController < ApplicationController
     def index
         @blogs = current_user.blogs.all
     end
+      
 
     def show
-        @blog = Blogs.find(params[:id])
+        @blog = Blog.find(params[:id])
     end
     
     def new
@@ -21,6 +22,7 @@ class BlogsController < ApplicationController
         else
             flash.now[:error] = 'There was an error creating the blog post.'
             render :new
+            # redirect_to blogs_path, alert: 'Failed to create task!'
         end
     end
 
@@ -29,21 +31,19 @@ class BlogsController < ApplicationController
   
     def update
         if @blog.update(blog_params)
-          redirect_to @blog, notice: 'Blog post was successfully updated.'
+          redirect_to blogs_path(@blog)
         else
           render :edit
         end
     end
 
     def destroy
-        @blog = Blog.find(params[:id])
+        # @blog = Blog.find(params[:id])
         @blog.destroy
-        redirect_to root_path, notice: 'Blog was successfully deleted.'
+        redirect_to blogs_path, notice: 'Blog was successfully deleted.'
     end
 
-    # def set_blog
-    #     @blog = Blog.find(params[:id])
-    # end
+
 
     private
 
@@ -51,5 +51,8 @@ class BlogsController < ApplicationController
         params.require(:blog).permit(:title, :content, :image)
     end
 
+    def set_blog
+        @blog = Blog.find(params[:id])
+    end
 
 end

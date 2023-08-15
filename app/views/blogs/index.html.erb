@@ -54,15 +54,38 @@
                 <li class="list-inline-item"><a href="#" class="text-white">Home</a></li>
                 <li class="list-inline-item"><a href="#" class="text-white">About</a></li>
                 <li class="list-inline-item"><a href="#" class="text-white">Contact</a></li>
-                <!--li class="list-inline-item"><a href="create-post.html" class="text-white">Create Post</a></li-->
             </ul>
         </nav>
     </header>
     
 
-    <main class="container mx-auto my-8">
 
-    </main>
+    <div class="container">
+        <!--h1>Blog Posts</h1-->
+        <%= form_with(model: Blog.new, url: blogs_path, local: true, multipart: true) do |form| %>
+            <%= form.text_field :title, placeholder: "Enter title", required: true %>
+            <%= form.text_area :content, placeholder: "Enter content", required: true %>
+            <%= form.file_field :image, accept: "image/*" %>
+            <%= form.submit "Create Blog Post" %>
+        <% end %>
+        <ul id="blogList">
+            <% @blogs.each do |blog| %>
+                <li>
+                    <h3><%= blog.title %></h3>
+                    <p><%= blog.content %></p>
+                    <% if blog.image.present? %>
+                        <%= image_tag blog.image.url, alt: blog.title %>
+                    <% end %>                   
+                    <%= link_to "Delete", blog_path(blog), method: :delete, data: { confirm: "Are you sure?" } %>
+                    <!--%= link_to "DELETE", destroy_user_session_path, method: :delete %-->
+                </li>
+            <% end %>
+        </ul>
+    </div>
+
+
+
+
 
 
     <footer class="bg-blue-600 text-white text-center py-2">
