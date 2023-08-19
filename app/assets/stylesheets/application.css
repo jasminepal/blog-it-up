@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+ .avatar {
+    width: 50px;  /* Set the width of the avatar image */
+    height: 50px; /* Set the height of the avatar image */
+    border-radius: 50%; /* Create a circular avatar */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    /* Add more styles as needed */
+  }
+  

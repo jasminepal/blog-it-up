@@ -5,4 +5,8 @@
   <%= form.text_field :title, placeholder: 'Title', value: @blog.title %>
   <%= form.text_area :text, placeholder: 'Text', value: @blog.text %>
   <%= form.submit 'Update Blog Post' %>
+
+  <!--div class = "field">
+    <%= image_tag(resource.avatar_thumbnail) if resource.avatar.attached? %>
+  </div-->
 <% end %>
