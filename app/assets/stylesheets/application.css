@@ -15,10 +15,11 @@
  */
 
  .avatar {
-    width: 50px;  /* Set the width of the avatar image */
-    height: 50px; /* Set the height of the avatar image */
+    width: 100px;  /* Set the width of the avatar image */
+    height: 100px; /* Set the height of the avatar image */
     border-radius: 50%; /* Create a circular avatar */
     object-fit: cover; /* Maintain aspect ratio and cover the container */
-    /* Add more styles as needed */
+    
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   }
   
