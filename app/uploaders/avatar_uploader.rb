@@ -1,7 +1,7 @@
 class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -21,8 +21,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
-  # process scale: [200, 300]
+
   #
   # def scale(width, height)
   #   # do something
@@ -44,4 +43,22 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  # Setting a default image to use if no avatar is uploaded
+  def default_url(*args)
+    "/images/default_avatar.png" # Update this to your desired default image path
+  end
+
+  # Process files as they are uploaded:
+  process resize_to_fit: [200, 200]
+
+  # Add an allowlist of extensions which are allowed to be uploaded
+  def extension_allowlist
+    %w(jpg jpeg gif png)
+  end
+
+  # Override the filename of the uploaded files
+  def filename
+    "avatar_#{Time.now.to_i}.#{file.extension}" if original_filename
+  end
 end

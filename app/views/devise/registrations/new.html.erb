@@ -21,19 +21,21 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'your-form-class', multipart: true }) do |f| %>
-    <!--%= f.text_field :email, placeholder: 'Email' %-->
-    <!--%= f.password_field :password, placeholder: 'Password' %-->
-    <!--%= f.password_field :password_confirmation, placeholder: 'Confirm Password' %-->
+    <!--%= f.file_field :avatar %-->
+    <!--%= f.submit 'Sign Up' %-->
+
+
+  <div class="field">
+    <%= f.label :avatar %><br />
     <%= f.file_field :avatar %>
-    <%= f.submit 'Sign Up' %>
-  <% end %>
+  </div>
+
   <!--div class="field">
     <%= f.file_field :avatar %>
   </div-->
-  <!--div class="actions">
+  <div class="actions">
     <%= f.submit "Sign up" %>
-  </div-->
+  </div>
 
  
 <% end %>

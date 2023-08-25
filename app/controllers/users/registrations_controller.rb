@@ -60,7 +60,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  def create
+    build_resource(sign_up_params)
+    resource.avatar = params[:user][:avatar] if params[:user][:avatar] # Set avatar from form
 
+    resource.save
+    if resource.errors.empty?
+      sign_in(resource)
+      render json: { user: resource }
+    else
+      render json: { error: resource.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
 
   protected
 
