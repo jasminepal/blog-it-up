@@ -9,9 +9,3 @@
   <%= form.submit 'Create Blog Post' %>
 <% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-  <%= f.label :gender %>
-  <%= f.select :gender, User.genders.keys.map { |key| [key.capitalize, key] } %>
-
-<% end %>
