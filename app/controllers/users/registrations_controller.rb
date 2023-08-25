@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -60,28 +60,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  def create
-    build_resource(sign_up_params)
-    resource.avatar = params[:user][:avatar] if params[:user][:avatar] # Set avatar from form
+  # def create
+  #   build_resource(sign_up_params)
+  #   resource.avatar = params[:user][:avatar] if params[:user][:avatar] # Set avatar from form
 
-    resource.save
-    if resource.errors.empty?
-      sign_in(resource)
-      render json: { user: resource }
-    else
-      render json: { error: resource.errors.full_messages }, status: :unprocessable_entity
-    end
-  end
+  #   resource.save
+  #   if resource.errors.empty?
+  #     sign_in(resource)
+  #     render json: { user: resource }
+  #   else
+  #     render json: { error: resource.errors.full_messages }, status: :unprocessable_entity
+  #   end
+  # end
 
   protected
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :avatar])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :current_password, :avatar])
-  end
-
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :avatar])
+  def sign_up_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :avatar)
   end
 
 end
