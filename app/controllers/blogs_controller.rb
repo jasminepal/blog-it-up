@@ -18,6 +18,10 @@ class BlogsController < ApplicationController
         @blog = current_user.blogs.build(blog_params)
         @blog.user = current_user
         @blog.avatar = params[:blog][:avatar] if params[:blog][:avatar]
+        if params[:user] && params[:user][:gender]
+            @blog = current_user
+            @blog.user.gender = params[:user][:gender]
+        end
         if @blog.save
             flash[:success] = 'Blog post was successfully created.'
             redirect_to blogs_path
@@ -50,11 +54,11 @@ class BlogsController < ApplicationController
     private
 
     def blog_params
-        params.require(:blog).permit(:title, :content, :image, :avatar)
+        params.require(:blog).permit(:title, :content, :image, :avatar, user_attributes: [:gender])
     end
 
     def set_blog
-        @blog = Blog.find(params[:id])
+        @blog = current_user.blogs.find(params[:id])
     end
 
 end

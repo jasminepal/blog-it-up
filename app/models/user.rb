@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :blogs
   mount_uploader :avatar, AvatarUploader
+  validates :gender, presence: true
   enum gender: { male: 0, female: 1, other: 2 }
   
+
+  private 
 end

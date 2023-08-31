@@ -82,29 +82,33 @@
         <ul id="blogList">
             <% @blogs.each do |blog| %>
                 <li>
-                    <!--h2><%= blog.title %></h2-->
-                    <!--%= image_tag blog.avatar.url, class: "avatar" if blog.avatar.present? %-->
+
                     <h3 class="blog-title"><%= blog.title %></h3>
                     <p><%= blog.content %></p>
                     <% if blog.image.present? %>
                         <%= image_tag blog.image.url, alt: blog.title %>
                     <% end %>                   
-                    <!--%= link_to "Delete", blog_path(blog), method: :delete, data: { confirm: "Are you sure?" } %-->
-                    <!--%= link_to "DELETE", destroy_user_session_path, method: :delete %-->
+
                     <%= link_to "DESTROY", blog, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                    <div class="blog">
+                        <div class="blog flex items-center">
+                            <div class="w-12 h-12 mr-4">
+                                <%= image_tag blog.user.avatar.url, class: "rounded-full" if blog.user.avatar.present? %>
+                            </div>
+                        </div>
+                    </div>
                     <p class="meta">
                         Posted by <%= blog.user.email %> on <%= blog.created_at.strftime("%B %d, %Y") %>
-                        | Gender: <%= blog.user.gender&.capitalize %>
+                        <p>Gender: <%= blog.user.gender %></p>
+
                     </p>
-                    <!--p class="meta">
-                        Posted by <%= blog.user.email %> on <%= blog.created_at.strftime("%B %d, %Y") %>
-                    </p-->
+                    
+
+
                     <br>
                     <br>
                 </li>
-                <div class="blog">
-                    <%= image_tag blog.avatar.url if blog.avatar.present? %>
-                </div>
+
             <% end %>
         </ul>
     </div>

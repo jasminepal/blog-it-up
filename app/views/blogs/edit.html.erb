@@ -4,6 +4,12 @@
 <%= form_with(model: @blog, url: blog_path(@blog), local: true, method: :patch) do |form| %>
   <%= form.text_field :title, placeholder: 'Title', value: @blog.title %>
   <%= form.text_area :text, placeholder: 'Text', value: @blog.text %>
+
+
+
+  <%= link_to 'Show', @blog %> |
+  <%= link_to 'Back', blogs_path %>
+
   <%= form.submit 'Update Blog Post' %>
 
   <!--div class = "field">
