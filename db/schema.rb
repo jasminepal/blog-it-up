@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_183147) do
     t.string "title"
     t.text "content"
     t.string "image"
+    t.string "gender"
     t.string "avatar"
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
@@ -31,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_183147) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar"
-    t.string "gender"
+    t.integer "gender"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
